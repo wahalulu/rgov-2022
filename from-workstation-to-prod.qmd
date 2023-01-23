@@ -1,0 +1,358 @@
+---
+title: "Leaping from your workstation to production"
+subtitle: "Best practices in R programming"
+author: "Marck Vaisman"
+institute: "Microsoft"
+date: "December 1, 2022"
+format: 
+  revealjs:
+    logo: img/Microsoft-logo_rgb_c-wht.png
+    theme: [microsoft.scss]
+    slide-level: 2
+    fig-align: center
+    fig-dpi: 300
+    slide-number: c
+#    smaller: true
+execute:
+  echo: true
+  eval: false
+# embed-resources: true
+---
+
+## Show of hands
+
+> -   Have you ever written an R script to be run in a non-interactive way?
+> -   Did it work the first time as planned?
+> -   Have you ever scheduled an R script to run without human intervention?
+> -   Do you have any R script running in production?
+
+## We're baaaack! {background-color="black" background-image="img/dancing.gif"}
+
+## 
+
+-   Sr.
+    Cloud Solutions Architect, Microsoft
+
+    -   6 mos as PM Azure Machine Learning
+
+-   Adjunct Professor, Georgetown Masters of Data Science and Analytics
+
+-   Co-Founder of DataCommunityDC
+
+**Disclaimer:** the opinions expressed in this talk are personal and not reflective of any organization I am affiliated with.
+
+# Inspiration
+
+## Our work has changed...
+
+::: columns
+::: {.column width="47%" height="40%"}
+![10 years ago...](img/datascience-venn-diagram.png)
+:::
+
+::: {.column width="47%" height="40%"}
+![Today](img/what-ai-actually-is.jpeg)
+:::
+:::
+
+## Glimpse into MLOps
+
+![](img/mlops-conceptual-model.png)
+
+## This is really important!
+
+![](https://media.giphy.com/media/l0HlMtWlBqTEHwBgs/giphy.gif)
+
+::: notes
+-   Most data professionals are typically not trained as developers/engineers but need to think like one
+-   These ideas will make you a better programmer
+-   Many years coding R and Python
+-   Aspiring to be a better programmer
+-   Interacting with large scale and distributed systems
+-   Crappy code in the wild
+:::
+
+## What is production?
+
+![](https://media.giphy.com/media/QWRRfOqmTPHuNvHnTa/giphy.gif)
+
+## A typical scenario
+
+You write a *super awesome* script
+
+```{r}
+$ Rscript super_important_business_stuff.R
+```
+
+. . .
+
+Arrrgh... you get an error!
+
+```{r}
+Error in l[[x]] : subscript out of bounds
+Calls: g -> f
+Execution halted
+```
+
+. . .
+
+Or perhaps another?
+
+```{r}
+Error in .subset2(x, i, exact = exact) : subscript out of bounds
+Execution halted
+```
+
+## What happened?
+
+**You don't know!**
+
+This is just one aspect of going to production.
+. . .
+
+## What do you need?
+
+- descriptive logging
+- error handling (`tryCatch`)
+- replicable environment (packages, OS libraries, etc.)
+- credentials
+- logging with intepretable messages
+- parametrized scripts
+- metadata
+- networking/security
+
+
+## What is production?
+
+::: columns
+::: {.column width="47%"}
+*Your definition of production is unique!*
+
+Using `R` (or other script) in a non-interactive way:
+
+-   scheduled
+-   triggered via upstream job trigger or API request
+-   deployed/running somewhere else
+  - remote server
+  - container
+:::
+
+::: {.column width="47%"}
+![](https://media.giphy.com/media/8lUDy1HTU9vRm/giphy-downsized-large.gif)
+:::
+:::
+
+
+## What about the actual code itself?
+
+![](https://media.giphy.com/media/kc0kqKNFu7v35gPkwB/giphy.gif)
+
+## Many options to the rescue
+
+::: columns
+::: {.column width="47%"}
+![](https://media.giphy.com/media/vM7NiY1r6s1eS4acFz/giphy-downsized-large.gif)
+:::
+
+::: {.column width="47%"}
+### You have many options to save you
+* Functional programming
+* Meta programming
+* DRY (don't repeat yourself)
+
+:::
+:::
+
+# Good news!
+
+## You probably have been doing some of this in `R`!
+
+![](img/advanced-r.png)
+
+# Functional programming
+
+## What is functional programming?
+
+![](img/functional-programming.png)
+
+## Based on math (lambda calculus)
+
+![](img/function.png)
+
+## Helps you avoid this
+
+![](img/einstein-crazy.png)
+
+## Pure Functions
+
+::: columns
+::: {.column width="47%"}
+
+Add two integers
+```{r}
+add <- function(a, b)
+  a + b
+```
+
+Find the first character
+
+```{r}
+get_first_character <- function(s)
+  substr(s, 1, 1)
+```
+
+Divide two integers
+
+```{r}
+divide <- function(a, b)
+  a / b
+```
+:::
+
+::: {.column width="47%"}
+### Tenets of Pure Functions
+![](img/pure-function.png)
+:::
+:::
+
+
+## Oh, and code shouldn't lie!
+
+![](https://media.giphy.com/media/MZj0sGDUg8qAyWNBZh/giphy.gif)
+
+## Are these functions lying?
+
+Does `add` promise it will give us back a number?
+
+```{r}
+add <- function(a, b)
+  a + b
+```
+
+
+Does `get_first_character` promise it will give us back a string?
+
+
+```{r}
+get_first_character <- function(s)
+  substr(s, 1, 1)
+```
+
+Does divide promise it will give us back a number?
+
+```{r}
+divide <- function(a, b)
+  a / b
+```
+
+# Meta programming
+
+## Definition
+
+From Wikipedia
+
+> Metaprogramming is a programming technique in which computer programs have the ability to treat other programs as their data.
+> It means that a program can be designed to read, generate, analyze or transform other programs, and even modify itself while running.
+>
+> In some cases, this allows programmers to minimize the number of lines of code to express a solution, in turn reducing development time.
+>
+> It also allows programs a greater flexibility to efficiently handle new situations without recompilation.
+
+# Preparing your `R` code for production
+
+## Adapting an interactive script to run unattended
+
+::: columns
+::: {.column width="47%"}
+### Inputs
+
+-   Data file(s)
+-   Paths
+-   Models
+-   Constants for the script run
+:::
+
+::: {.column width="47%"}
+### Outpus
+
+* Models
+* Visualizations
+* Reports
+* Inference/Score
+* New Data
+:::
+:::
+
+
+## Packages
+
+-   `carrier`
+-   `optparse`
+-   `qs`
+-   `vetiver`
+-   `yaml`
+-   `tidyverse`
+
+## `optparse` example
+
+```{r}
+library(optparse)
+# parse the command line arguments
+parser <- OptionParser()
+
+parser <- add_option(
+  parser,
+  "--data_file",
+  type = "character",
+  action = "store"
+)
+
+args <- parse_args(parser)
+file_name <-file.path(args$data_file)
+df <- readr::read_csv(file_name) 
+
+```
+
+## `carrier` example
+
+```{r}
+library(rpart)
+library(carrier)
+
+# train a model on the iris data
+model <- rpart(Species ~ ., data = iris, method = "class")
+
+# create a crate
+predictor <- crate(~ stats::predict(!!model, .x, method = "class"))
+
+# save the crate to an rds file
+saveRDS(predictor, file="./models/iris-model.rds")
+```
+
+# MLOps
+
+## ML in the Enterprise
+
+![](img/enterprise-ml.png)
+
+## 
+
+![](img/data-science-lifecycle-diag.png)
+
+
+
+# You can use R Azure Machine Learning!
+
+
+## References
+
+-   Plachta, Michal. *Grokking Functional Programming*, 1st ed, Manning, 2022
+-   https://learn.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-technical-paper
+-   https://daroczig.github.io/talks/
+-   https://adv-r.hadley.nz/
+
+# Thank You
+
+marck.vaisman\@microsoft.com
+
+
