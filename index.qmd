@@ -4,19 +4,6 @@ subtitle: "Best practices in R programming"
 author: "Marck Vaisman"
 institute: "Microsoft"
 date: "December 1, 2022"
-format: 
-  revealjs:
-    logo: img/Microsoft-logo_rgb_c-wht.png
-    theme: [microsoft.scss]
-    slide-level: 2
-    fig-align: center
-    fig-dpi: 300
-    slide-number: c
-#    smaller: true
-execute:
-  echo: true
-  eval: false
-# embed-resources: true
 ---
 
 ## Show of hands
@@ -80,7 +67,7 @@ execute:
 
 You write a *super awesome* script
 
-```{r}
+```r
 $ Rscript super_important_business_stuff.R
 ```
 
@@ -88,7 +75,7 @@ $ Rscript super_important_business_stuff.R
 
 Arrrgh... you get an error!
 
-```{r}
+```r
 Error in l[[x]] : subscript out of bounds
 Calls: g -> f
 Execution halted
@@ -98,7 +85,7 @@ Execution halted
 
 Or perhaps another?
 
-```{r}
+```r
 Error in .subset2(x, i, exact = exact) : subscript out of bounds
 Execution halted
 ```
@@ -189,21 +176,21 @@ Using `R` (or other script) in a non-interactive way:
 ::: {.column width="47%"}
 
 Add two integers
-```{r}
+```r
 add <- function(a, b)
   a + b
 ```
 
 Find the first character
 
-```{r}
+```r
 get_first_character <- function(s)
   substr(s, 1, 1)
 ```
 
 Divide two integers
 
-```{r}
+```r
 divide <- function(a, b)
   a / b
 ```
@@ -224,7 +211,7 @@ divide <- function(a, b)
 
 Does `add` promise it will give us back a number?
 
-```{r}
+```r
 add <- function(a, b)
   a + b
 ```
@@ -233,14 +220,14 @@ add <- function(a, b)
 Does `get_first_character` promise it will give us back a string?
 
 
-```{r}
+```r
 get_first_character <- function(s)
   substr(s, 1, 1)
 ```
 
 Does divide promise it will give us back a number?
 
-```{r}
+```r
 divide <- function(a, b)
   a / b
 ```
@@ -295,7 +282,7 @@ From Wikipedia
 
 ## `optparse` example
 
-```{r}
+```r
 library(optparse)
 # parse the command line arguments
 parser <- OptionParser()
@@ -315,7 +302,7 @@ df <- readr::read_csv(file_name)
 
 ## `carrier` example
 
-```{r}
+```r
 library(rpart)
 library(carrier)
 
