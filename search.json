@@ -1,0 +1,191 @@
+[
+  {
+    "objectID": "index.html#show-of-hands",
+    "href": "index.html#show-of-hands",
+    "title": "Leaping from your workstation to production",
+    "section": "Show of hands",
+    "text": "Show of hands\n\nHave you ever written an R script to be run in a non-interactive way?\nDid it work the first time as planned?\nHave you ever scheduled an R script to run without human intervention?\nDo you have any R script running in production?"
+  },
+  {
+    "objectID": "index.html#were-baaaack",
+    "href": "index.html#were-baaaack",
+    "title": "Leaping from your workstation to production",
+    "section": "We’re baaaack!",
+    "text": "We’re baaaack!"
+  },
+  {
+    "objectID": "index.html#section",
+    "href": "index.html#section",
+    "title": "Leaping from your workstation to production",
+    "section": "",
+    "text": "Sr. Cloud Solutions Architect, Microsoft\n\n6 mos as PM Azure Machine Learning\n\nAdjunct Professor, Georgetown Masters of Data Science and Analytics\nCo-Founder of DataCommunityDC\n\nDisclaimer: the opinions expressed in this talk are personal and not reflective of any organization I am affiliated with."
+  },
+  {
+    "objectID": "index.html#our-work-has-changed",
+    "href": "index.html#our-work-has-changed",
+    "title": "Leaping from your workstation to production",
+    "section": "Our work has changed…",
+    "text": "Our work has changed…\n\n\n\n\n\n10 years ago…\n\n\n\n\n\n\nToday"
+  },
+  {
+    "objectID": "index.html#glimpse-into-mlops",
+    "href": "index.html#glimpse-into-mlops",
+    "title": "Leaping from your workstation to production",
+    "section": "Glimpse into MLOps",
+    "text": "Glimpse into MLOps"
+  },
+  {
+    "objectID": "index.html#this-is-really-important",
+    "href": "index.html#this-is-really-important",
+    "title": "Leaping from your workstation to production",
+    "section": "This is really important!",
+    "text": "This is really important!\n\n\n\nMost data professionals are typically not trained as developers/engineers but need to think like one\nThese ideas will make you a better programmer\nMany years coding R and Python\nAspiring to be a better programmer\nInteracting with large scale and distributed systems\nCrappy code in the wild"
+  },
+  {
+    "objectID": "index.html#what-is-production",
+    "href": "index.html#what-is-production",
+    "title": "Leaping from your workstation to production",
+    "section": "What is production?",
+    "text": "What is production?"
+  },
+  {
+    "objectID": "index.html#a-typical-scenario",
+    "href": "index.html#a-typical-scenario",
+    "title": "Leaping from your workstation to production",
+    "section": "A typical scenario",
+    "text": "A typical scenario\nYou write a super awesome script\n$ Rscript super_important_business_stuff.R\n\nArrrgh… you get an error!\nError in l[[x]] : subscript out of bounds\nCalls: g -&gt; f\nExecution halted\n\n\nOr perhaps another?\nError in .subset2(x, i, exact = exact) : subscript out of bounds\nExecution halted"
+  },
+  {
+    "objectID": "index.html#what-happened",
+    "href": "index.html#what-happened",
+    "title": "Leaping from your workstation to production",
+    "section": "What happened?",
+    "text": "What happened?\nYou don’t know!\nThis is just one aspect of going to production. . . ."
+  },
+  {
+    "objectID": "index.html#what-do-you-need",
+    "href": "index.html#what-do-you-need",
+    "title": "Leaping from your workstation to production",
+    "section": "What do you need?",
+    "text": "What do you need?\n\ndescriptive logging\nerror handling (tryCatch)\nreplicable environment (packages, OS libraries, etc.)\ncredentials\nlogging with intepretable messages\nparametrized scripts\nmetadata\nnetworking/security"
+  },
+  {
+    "objectID": "index.html#what-is-production-1",
+    "href": "index.html#what-is-production-1",
+    "title": "Leaping from your workstation to production",
+    "section": "What is production?",
+    "text": "What is production?\n\n\nYour definition of production is unique!\nUsing R (or other script) in a non-interactive way:\n\nscheduled\ntriggered via upstream job trigger or API request\ndeployed/running somewhere else\nremote server\ncontainer"
+  },
+  {
+    "objectID": "index.html#what-about-the-actual-code-itself",
+    "href": "index.html#what-about-the-actual-code-itself",
+    "title": "Leaping from your workstation to production",
+    "section": "What about the actual code itself?",
+    "text": "What about the actual code itself?"
+  },
+  {
+    "objectID": "index.html#many-options-to-the-rescue",
+    "href": "index.html#many-options-to-the-rescue",
+    "title": "Leaping from your workstation to production",
+    "section": "Many options to the rescue",
+    "text": "Many options to the rescue\n\n\n\n\nYou have many options to save you\n\nFunctional programming\nMeta programming\nDRY (don’t repeat yourself)"
+  },
+  {
+    "objectID": "index.html#you-probably-have-been-doing-some-of-this-in-r",
+    "href": "index.html#you-probably-have-been-doing-some-of-this-in-r",
+    "title": "Leaping from your workstation to production",
+    "section": "You probably have been doing some of this in R!",
+    "text": "You probably have been doing some of this in R!"
+  },
+  {
+    "objectID": "index.html#what-is-functional-programming",
+    "href": "index.html#what-is-functional-programming",
+    "title": "Leaping from your workstation to production",
+    "section": "What is functional programming?",
+    "text": "What is functional programming?"
+  },
+  {
+    "objectID": "index.html#based-on-math-lambda-calculus",
+    "href": "index.html#based-on-math-lambda-calculus",
+    "title": "Leaping from your workstation to production",
+    "section": "Based on math (lambda calculus)",
+    "text": "Based on math (lambda calculus)"
+  },
+  {
+    "objectID": "index.html#helps-you-avoid-this",
+    "href": "index.html#helps-you-avoid-this",
+    "title": "Leaping from your workstation to production",
+    "section": "Helps you avoid this",
+    "text": "Helps you avoid this"
+  },
+  {
+    "objectID": "index.html#pure-functions",
+    "href": "index.html#pure-functions",
+    "title": "Leaping from your workstation to production",
+    "section": "Pure Functions",
+    "text": "Pure Functions\n\n\nAdd two integers\nadd &lt;- function(a, b)\n  a + b\nFind the first character\nget_first_character &lt;- function(s)\n  substr(s, 1, 1)\nDivide two integers\ndivide &lt;- function(a, b)\n  a / b\n\nTenets of Pure Functions"
+  },
+  {
+    "objectID": "index.html#oh-and-code-shouldnt-lie",
+    "href": "index.html#oh-and-code-shouldnt-lie",
+    "title": "Leaping from your workstation to production",
+    "section": "Oh, and code shouldn’t lie!",
+    "text": "Oh, and code shouldn’t lie!"
+  },
+  {
+    "objectID": "index.html#are-these-functions-lying",
+    "href": "index.html#are-these-functions-lying",
+    "title": "Leaping from your workstation to production",
+    "section": "Are these functions lying?",
+    "text": "Are these functions lying?\nDoes add promise it will give us back a number?\nadd &lt;- function(a, b)\n  a + b\nDoes get_first_character promise it will give us back a string?\nget_first_character &lt;- function(s)\n  substr(s, 1, 1)\nDoes divide promise it will give us back a number?\ndivide &lt;- function(a, b)\n  a / b"
+  },
+  {
+    "objectID": "index.html#definition",
+    "href": "index.html#definition",
+    "title": "Leaping from your workstation to production",
+    "section": "Definition",
+    "text": "Definition\nFrom Wikipedia\n\nMetaprogramming is a programming technique in which computer programs have the ability to treat other programs as their data. It means that a program can be designed to read, generate, analyze or transform other programs, and even modify itself while running.\nIn some cases, this allows programmers to minimize the number of lines of code to express a solution, in turn reducing development time.\nIt also allows programs a greater flexibility to efficiently handle new situations without recompilation."
+  },
+  {
+    "objectID": "index.html#adapting-an-interactive-script-to-run-unattended",
+    "href": "index.html#adapting-an-interactive-script-to-run-unattended",
+    "title": "Leaping from your workstation to production",
+    "section": "Adapting an interactive script to run unattended",
+    "text": "Adapting an interactive script to run unattended\n\n\nInputs\n\nData file(s)\nPaths\nModels\nConstants for the script run\n\n\nOutpus\n\nModels\nVisualizations\nReports\nInference/Score\nNew Data"
+  },
+  {
+    "objectID": "index.html#packages",
+    "href": "index.html#packages",
+    "title": "Leaping from your workstation to production",
+    "section": "Packages",
+    "text": "Packages\n\ncarrier\noptparse\nqs\nvetiver\nyaml\ntidyverse"
+  },
+  {
+    "objectID": "index.html#optparse-example",
+    "href": "index.html#optparse-example",
+    "title": "Leaping from your workstation to production",
+    "section": "optparse example",
+    "text": "optparse example\nlibrary(optparse)\n# parse the command line arguments\nparser &lt;- OptionParser()\n\nparser &lt;- add_option(\n  parser,\n  \"--data_file\",\n  type = \"character\",\n  action = \"store\"\n)\n\nargs &lt;- parse_args(parser)\nfile_name &lt;-file.path(args$data_file)\ndf &lt;- readr::read_csv(file_name)"
+  },
+  {
+    "objectID": "index.html#carrier-example",
+    "href": "index.html#carrier-example",
+    "title": "Leaping from your workstation to production",
+    "section": "carrier example",
+    "text": "carrier example\nlibrary(rpart)\nlibrary(carrier)\n\n# train a model on the iris data\nmodel &lt;- rpart(Species ~ ., data = iris, method = \"class\")\n\n# create a crate\npredictor &lt;- crate(~ stats::predict(!!model, .x, method = \"class\"))\n\n# save the crate to an rds file\nsaveRDS(predictor, file=\"./models/iris-model.rds\")"
+  },
+  {
+    "objectID": "index.html#ml-in-the-enterprise",
+    "href": "index.html#ml-in-the-enterprise",
+    "title": "Leaping from your workstation to production",
+    "section": "ML in the Enterprise",
+    "text": "ML in the Enterprise"
+  },
+  {
+    "objectID": "index.html#references",
+    "href": "index.html#references",
+    "title": "Leaping from your workstation to production",
+    "section": "References",
+    "text": "References\n\nPlachta, Michal. Grokking Functional Programming, 1st ed, Manning, 2022\nhttps://learn.microsoft.com/en-us/azure/architecture/example-scenario/mlops/mlops-technical-paper\nhttps://daroczig.github.io/talks/\nhttps://adv-r.hadley.nz/"
+  }
+]
